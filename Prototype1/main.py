@@ -1,5 +1,5 @@
 import serial
-# import matplotlib as plt
+import matplotlib.pyplot as plt
 
 ser = serial.Serial('COM9')
 inData=""
@@ -31,9 +31,28 @@ while(counter!=500):
    indx2 = indx2 + 1
    b=""
 
+ # plt.title('ECG Reading')
+ # plt.ylabel('ECG Voltage')
+
+
 
  counter=counter+1
  inData=""
+print("Done!\n")
+print(len(time))
+print(len(value))
+
+# if(len(time) != len(value)):
+#  value.append(0)
+while indx!=0:
+ plt.plot(time,value,'r')
+
+ plt.grid()
+ plt.xlabel('Time')
+ plt.title('ECG (V) vs Time (s)')
+ plt.show()
+ plt.pause(0.0001)
+ indx = indx -1
 
 ser.close()
 print(time)
@@ -41,7 +60,5 @@ print(value)
 print(len(time))
 print(len(value))
 
-# plt.plot(time,value)
-# plt.show()
 
 
