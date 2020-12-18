@@ -23,9 +23,9 @@
 #include "stm32l4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-int f = 0;
 #include "stdlib.h"
 #include "stdio.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,10 +47,9 @@ int f = 0;
 /* USER CODE BEGIN PV */
 extern uint8_t flag;
 extern uint8_t i;
-extern uint8_t j;
 extern uint32_t adcvalue;
-extern uint16_t values[4][150];
 extern UART_HandleTypeDef huart2;
+extern uint32_t array[200];
 
 
 /* USER CODE END PV */
@@ -63,13 +62,13 @@ extern UART_HandleTypeDef huart2;
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_adc1;
 extern ADC_HandleTypeDef hadc1;
 extern TIM_HandleTypeDef htim2;
-extern UART_HandleTypeDef huart1;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -244,30 +243,28 @@ void ADC1_IRQHandler(void)
   */
 void TIM2_IRQHandler(void)
 {
-	char buff[10]={0};
   /* USER CODE BEGIN TIM2_IRQn 0 */
-	sprintf(buff,"%d\r\n",adcvalue);
-	HAL_UART_Transmit(&huart2,(uint8_t*)buff,sizeof(buff),100);
+	
+	char str[10];
+	 uint8_t f;
 
+	array[i++] = adcvalue;
+	sprintf(str,"%d\r\n",array[i-1]);
+	HAL_UART_Transmit(&huart2, (uint8_t*)str,strlen(str),100);
+	
+	if(i==199){
+		i=0;
+		flag = 1;
+		memset(array,0,sizeof(array));
+		
+	}
+	
+	
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);
   /* USER CODE BEGIN TIM2_IRQn 1 */
 
   /* USER CODE END TIM2_IRQn 1 */
-}
-
-/**
-  * @brief This function handles USART1 global interrupt.
-  */
-void USART1_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART1_IRQn 0 */
-
-  /* USER CODE END USART1_IRQn 0 */
-  HAL_UART_IRQHandler(&huart1);
-  /* USER CODE BEGIN USART1_IRQn 1 */
-
-  /* USER CODE END USART1_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
