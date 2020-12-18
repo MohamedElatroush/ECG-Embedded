@@ -28,6 +28,6 @@ The main aim of the project is to create an online tracking of patients health i
 ## STM32 Configuration:
 <img src="https://github.com/MohamedElatroush/ECG-Embedded/blob/main/Final/Screenshots/STM.jpg" width="400" height="400"> <br>
 ## Board Connection:
-<img src="https://github.com/MohamedElatroush/ECG-Embedded/blob/main/Final/Screenshots/board-connection.jpg" width="600" height="400">
-## Implementation
+<img src="https://github.com/MohamedElatroush/ECG-Embedded/blob/main/Final/Screenshots/board-connection.jpg" width="600" height="400"> <br>
+## Implementation:
 The project runs when we run the python code, and it's assumed that that the program is already loaded on the microcontroller, a sampling frequency of 1000Hz been chosen to sample the ECG analog signal, the data gets then sent to the python code using a library called PySerial which can receive data over UART, we have used the baud rate's default value to be 115200 (later we will try to make the user configure that value). <br>
