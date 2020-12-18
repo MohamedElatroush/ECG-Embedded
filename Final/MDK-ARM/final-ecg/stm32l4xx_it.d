@@ -39,3 +39,4 @@ final-ecg\stm32l4xx_it.o: ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart
 final-ecg\stm32l4xx_it.o: ../Core/Inc/stm32l4xx_it.h
 final-ecg\stm32l4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 final-ecg\stm32l4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+final-ecg\stm32l4xx_it.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
