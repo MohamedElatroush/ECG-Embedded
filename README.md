@@ -42,12 +42,21 @@ The project runs when we run the python code, and it's assumed that that the pro
 
 <br>
 
+# DMA Keil
+The use of DMA was helpful, as we transfer the analog signal from the ADC and then using the TIM2 interrupt in order to transfer that value over UART for either tera term or Python to plot the ECG signal <br>
+
+**Code used: HAL_ADC_Start_DMA(&hadc1, &adcvalue, 1);** <br>
+
 ## Results
 ## ECG graph that our team was able to achieve: <br>
 <img src="https://github.com/MohamedElatroush/ECG-Embedded/blob/main/Final/Screenshots/ecg-graph.jpg" width="500" height="400"> <br>
 
 ## BPM (Graph needs enhancement to achieve an accurate BPM)
 <img src="https://github.com/MohamedElatroush/ECG-Embedded/blob/main/Final/Screenshots/bpm.jpg" width="1000" height="200"> <br>
+
+# BPM calculation
+**Detecting the maximum in each list and if two maximums occurred successively then the BPM will be calculated by 60/(time_peak2-time_peak1)** <br>
+<img src="https://github.com/MohamedElatroush/ECG-Embedded/blob/main/Final/Screenshots/bpmcode.jpg" width="500" height="500"> <br>
 
 # Limitations
 1. The usage of google sheets is not efficient since google API limit developers of the amount of request and reply that can be performed
@@ -58,3 +67,4 @@ The project runs when we run the python code, and it's assumed that that the pro
 1. STM32L432KC datasheet: https://www.st.com/resource/en/datasheet/stm32l432kc.pdf
 2. AD8232 ECG datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ad8232.pdf
 3. Embedded Systems Lab helped us in creating an interrupt that is responsible for sampling the analog signal
+4. BPM calculation http://www.meddean.luc.edu/lumen/meded/medicine/skills/ekg/les1prnt.htm#:~:text=Heart%20rate%20calculation%3A,beats%20per%20minute%20(bpm).&text=to%20go%20by%20RR%20or,60%2F0.2%20%3D%20300%20bpm.
